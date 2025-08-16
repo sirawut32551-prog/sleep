@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>จดหมายลับไว้นินทาเอย</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffebf0;
+      font-family: "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+    #login {
+      text-align: center;
+    }
+    #password {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      font-size: 16px;
+    }
+    #btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+    }
+    #content {
+      display: none;
+      text-align: center;
+      color: #ff4d6d;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    /* หัวใจลอย */
+    .heart {
+      position: fixed;
+      color: #ff4d6d;
+      font-size: 24px;
+      animation: float 5s linear infinite;
+      top: 100%;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- หน้ารหัส -->
+  <div id="login">
+    <h2>รหัสคือวันครบรอบ 💕</h2>
+    <input type="password" id="password" placeholder="พิมพ์รหัส">
+    <br>
+    <button id="btn">เข้าสู่เว็บ</button>
+  </div>
+
+  <!-- เนื้อหาหลัก -->
+  <div id="content">
+    <h1>รักนะครับ</h1>
+    <p>กระผมขอโทษที่พูดโดยไม่คิดแต่กระผมไม่อยากโดนเมิน</p>
+    <!-- เพลง -->
+    <audio id="music" loop>
+      <source src="music.mp3.mp3" type="audio/mpeg">
+    </audio>
+    <img src="image.jpg.webp" alt="รูปคนรักเธอ" style="max-width: 80%; border-radius: 12px; margin-top: 20px;">
+  </div>
+
+  <script>
+    const btn = document.getElementById("btn");
+    const login = document.getElementById("login");
+    const content = document.getElementById("content");
+    const music = document.getElementById("music");
+
+    btn.addEventListener("click", () => {
+      const pass = document.getElementById("password").value;
+      if (pass === "03/06/2568" || pass === "03062568") { 
+        login.style.display = "none";
+        content.style.display = "block";
+        music.play();
+        createHearts();
+      } else {
+        alert("รหัสผิดจ้าลืมวันครบรอบเป็นคนยังไงจ๊ะ");
+      }
+    });
+
+    // ฟังก์ชันสร้างหัวใจลอย
+    function createHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = Math.random() * 20 + 20 + "px";
+        heart.innerText = "💖";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
